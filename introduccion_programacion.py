@@ -1,6 +1,6 @@
 """
 ===============================================================================
-       GUÍA PARA EL 1T2: TRASLADO DE PSEINT A PYTHON
+       GUÍA PARA EL 1T2: TRASLADO DE PSEINT A PYTHON-Hola
 ===============================================================================
 Hola muchachos. Este archivo está diseñado para que vean que Python no es
 tan diferente a lo que ya saben de PSeInt. 
