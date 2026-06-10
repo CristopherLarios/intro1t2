@@ -1,166 +1,161 @@
 """
 ===============================================================================
-       GUÍA INTERACTIVA DE PROGRAMACIÓN: DE PSEINT A PYTHON (1T2)
+       GUÍA PARA EL 1T2: TRASLADO DE PSEINT A PYTHON
 ===============================================================================
-Python es un lenguaje de programación de alto nivel, interpretado y de
-propósito general. Se caracteriza por su legibilidad y simplicidad.
+Hola muchachos. Este archivo está diseñado para que vean que Python no es
+tan diferente a lo que ya saben de PSeInt. 
 
-Reglas y Características Básicas:
-1. Identación: En Python, los espacios al inicio de la línea son obligatorios
-   para definir bloques de código (en lugar de 'FinSi' o 'FinPara').
-2. Sensible a Mayúsculas: 'Variable' y 'variable' son distintas.
-3. Tipado Dinámico: No necesitas declarar el tipo de dato de una variable.
+CONCEPTOS NUEVOS QUE VERÁN AQUÍ (Scaffolding):
+1. 'import': Sirve para traer "herramientas" que no vienen activadas por defecto.
+2. 'def': Sirve para crear un "bloque" de código con nombre que podemos usar luego.
+3. 'if __name__ == "__main__":': Es simplemente donde el programa empieza a correr.
 ===============================================================================
 """
 
-import time
-import os
+# IMPORTAR HERRAMIENTAS
+import os  # 'os' nos permite darle órdenes al sistema operativo (como limpiar pantalla)
 
 def limpiar_pantalla():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    # En PSeInt usábamos: Borrar Pantalla
+    # En Python, enviamos un comando al sistema:
+    if os.name == 'nt': # Si es Windows
+        os.system('cls')
+    else:               # Si es Mac o Linux
+        os.system('clear')
 
 def pausar():
+    # Usamos input vacío para que el programa se detenga hasta que presiones Enter
     input("\n[Presiona Enter para continuar...]")
 
-def intro():
+# --- EXPLICACIÓN DE VARIABLES Y TIPOS ---
+def explicacion_variables():
     limpiar_pantalla()
-    print("¡Bienvenidos muchachos del 1T2!")
-    print("Hoy vamos a ver cómo lo que aprendieron en PSeInt se traduce a Python.")
+    print("1. VARIABLES Y TIPOS DE DATOS")
+    print("-----------------------------")
+    # PSeInt: Definir nombre Como Cadena
+    # PSeInt: nombre <- "Juan"
+    
+    # Python: No necesitas 'Definir', solo asignas el valor directamente.
+    nombre = "Juan"         # Cadena de texto (String)
+    edad = 17               # Entero (Integer)
+    nota = 8.5              # Decimal (Float)
+    aprobado = True         # Lógico (Boolean)
+    
+    print(f"Nombre: {nombre} | Edad: {edad} | Nota: {nota}")
+    print("Nota: Python detecta automáticamente el tipo de dato.")
     pausar()
 
-def variables_y_tipos():
+# --- EXPLICACIÓN DE OPERADORES ---
+def explicacion_operadores():
     limpiar_pantalla()
-    print("--- 1. VARIABLES Y TIPOS DE DATOS ---")
+    print("2. OPERADORES LÓGICOS Y ARITMÉTICOS")
+    print("-----------------------------------")
+    # Aritméticos: +, -, *, / (igual que PSeInt)
+    # Exponente: ** (En PSeInt era ^)
+    # División Entera: // (da el resultado sin decimales)
     
-    # PSEINT:
-    # Definir nombre Como Cadena
-    # nombre <- "Estudiante"
+    num1 = 10
+    num2 = 3
+    print(f"Suma de {num1} + {num2} = {num1 + num2}")
+    print(f"Potencia de {num1} a la {num2} = {num1 ** num2}")
     
-    # PYTHON:
-    nombre = "Estudiante" # String (Texto)
-    edad = 18            # Integer (Entero)
-    promedio = 9.5       # Float (Decimal)
-    es_estudiante = True # Boolean (Lógico)
-
-    print(f"En Python no usamos 'Definir'. Simplemente asignamos:")
-    print(f"nombre = '{nombre}' (Tipo: {type(nombre).__name__})")
-    print(f"edad = {edad} (Tipo: {type(edad).__name__})")
-    print(f"promedio = {promedio} (Tipo: {type(promedio).__name__})")
-    print(f"es_estudiante = {es_estudiante} (Tipo: {type(es_estudiante).__name__})")
-    
+    # Lógicos: and (Y), or (O), not (NO)
+    tengo_hambre = True
+    tengo_comida = False
+    print(f"¿Como? (Hambre Y Comida): {tengo_hambre and tengo_comida}")
     pausar()
 
-def operadores():
+# --- EXPLICACIÓN DE CONDICIONALES ---
+def explicacion_condicionales():
     limpiar_pantalla()
-    print("--- 2. OPERADORES ---")
+    print("3. CONDICIONALES (SI-ENTONCES)")
+    print("------------------------------")
+    # PSeInt:
+    # Si edad >= 18 Entonces ... Sino ... FinSi
     
-    print("Aritméticos: +, -, *, /, // (división entera), % (módulo), ** (potencia)")
-    print("Lógicos: and (Y), or (O), not (NO)")
-    print("Relacionales: == (Igual), != (Diferente), >, <, >=, <=")
+    # Python: Usa 'if' y 'else'. IMPORTANTE: Los dos puntos ':' y el espacio (sangría)
+    edad = int(input("Dime tu edad: "))
     
-    a = 10
-    b = 3
-    print(f"\nEjemplo: a = {a}, b = {b}")
-    print(f"Suma (a + b): {a + b}")
-    print(f"Potencia (a ** b): {a ** b}")
-    print(f"¿Es a mayor que b? (a > b): {a > b}")
-    
-    pausar()
-
-def condicionales():
-    limpiar_pantalla()
-    print("--- 3. CONDICIONALES ---")
-    
-    # PSEINT:
-    # Si edad >= 18 Entonces
-    #   Escribir "Eres mayor de edad"
-    # Sino
-    #   Escribir "Eres menor"
-    # FinSi
-    
-    # PYTHON:
-    print("PSeInt usa 'Si...Entonces...Sino...FinSi'. Python usa 'if...else:' y espacios.")
-    
-    user_edad = int(input("Ingresa tu edad para probar: "))
-    
-    if user_edad >= 18:
-        print(">> Resultado: Eres mayor de edad (¡Bienvenido al club!)")
+    if edad >= 18:
+        print("Eres mayor de edad.") # Esta línea tiene sangría (espacios)
     else:
-        print(">> Resultado: Eres menor de edad (Aún te falta un poco)")
+        print("Eres menor de edad.")
     
+    print("\n(La identación/sangría le dice a Python qué código va dentro del 'if')")
     pausar()
 
-def ciclos_y_contadores():
+# --- EXPLICACIÓN DE CICLOS, CONTADORES Y ACUMULADORES ---
+def explicacion_ciclos():
     limpiar_pantalla()
-    print("--- 4. CICLOS, CONTADORES Y ACUMULADORES ---")
+    print("4. CICLOS (PARA), CONTADORES Y ACUMULADORES")
+    print("-------------------------------------------")
+    # En PSeInt: Para i <- 1 Hasta 5 Hacer ...
     
-    # PSEINT (Para):
-    # Para i <- 1 Hasta 5 Con Paso 1 Hacer ... FinPara
+    contador = 0    # Empieza en 0
+    acumulador = 0  # Empieza en 0
     
-    print("Python usa 'for i in range(inicio, fin):' para repetir.")
+    print("Sumaremos los números del 1 al 5:")
     
-    contador = 0
-    acumulador = 0
-    
-    print("\nSimulando una suma de los números del 1 al 5:")
+    # 'range(1, 6)' significa: empieza en 1 y llega hasta ANTES del 6.
     for i in range(1, 6):
-        contador += 1           # Contador: contador = contador + 1
-        acumulador += i         # Acumulador: acumulador = acumulador + i
-        print(f"Iteración {i}: Contador={contador}, Acumulador={acumulador}")
-        time.sleep(0.5)
-        
-    print(f"\nTotal acumulado: {acumulador}")
+        contador = contador + 1     # Contador
+        acumulador = acumulador + i  # Acumulador
+        print(f"Vuelta {i}: Contador vale {contador}, Acumulador vale {acumulador}")
+    
     pausar()
 
-def arreglos_listas():
+# --- EXPLICACIÓN DE ARREGLOS (LISTAS) ---
+def explicacion_arreglos():
     limpiar_pantalla()
-    print("--- 5. ARREGLOS (LISTAS EN PYTHON) ---")
+    print("5. ARREGLOS / LISTAS")
+    print("--------------------")
+    # PSeInt: Dimension alumnos[3]
     
-    # PSEINT:
-    # Dimension nombres[3]
-    # nombres[1] <- "Ana"
+    # En Python se llaman 'Listas' y son muy flexibles.
+    alumnos = ["Kevin", "Maria", "Jose"]
     
-    # PYTHON:
-    # Las listas son dinámicas y empiezan en índice 0.
-    frutas = ["Manzana", "Bananos", "Uvas"]
+    print(f"El primer alumno es: {alumnos[0]}") # ¡Ojo! En Python empezamos a contar desde 0.
+    print(f"Lista completa: {alumnos}")
     
-    print(f"Lista original: {frutas}")
-    nueva_fruta = input("Agreguemos una fruta a la lista: ")
-    frutas.append(nueva_fruta)
+    # Agregar un elemento nuevo
+    nuevo = input("Agrega un nuevo alumno: ")
+    alumnos.append(nuevo) # 'append' es una herramienta para añadir al final
     
-    print(f"\nAhora la lista tiene {len(frutas)} elementos:")
-    for i, fruta in enumerate(frutas):
-        print(f" Índice {i}: {fruta}")
-        
+    print(f"Nueva lista: {alumnos}")
     pausar()
 
-def main():
-    while True:
+# --- MENÚ PRINCIPAL ---
+def menu():
+    opcion = ""
+    while opcion != "6": # Mientras la opción no sea 6
         limpiar_pantalla()
-        print("========================================")
-        print("    MENÚ PRINCIPAL - TUTORIAL 1T2       ")
-        print("========================================")
+        print("   TUTORIAL INTERACTIVO PYTHON (1T2)   ")
+        print("=======================================")
         print("1. Variables y Tipos de Datos")
         print("2. Operadores")
-        print("3. Condicionales (Si/Entonces)")
-        print("4. Ciclos, Contadores y Acumuladores")
+        print("3. Condicionales")
+        print("4. Ciclos (Contadores/Acumuladores)")
         print("5. Arreglos (Listas)")
         print("6. Salir")
         
-        opcion = input("\nSelecciona una opción (1-6): ")
+        opcion = input("\nElige una opción: ")
         
-        if opcion == '1': variables_y_tipos()
-        elif opcion == '2': operadores()
-        elif opcion == '3': condicionales()
-        elif opcion == '4': ciclos_y_contadores()
-        elif opcion == '5': arreglos_listas()
-        elif opcion == '6': 
-            print("\n¡Hasta luego, muchachos! Sigan programando.")
-            break
+        if opcion == "1":
+            explicacion_variables()
+        elif opcion == "2":
+            explicacion_operadores()
+        elif opcion == "3":
+            explicacion_condicionales()
+        elif opcion == "4":
+            explicacion_ciclos()
+        elif opcion == "5":
+            explicacion_arreglos()
+        elif opcion == "6":
+            print("¡Sigan practicando, muchachos!")
         else:
             print("Opción no válida.")
-            time.sleep(1)
+            pausar()
 
+# INICIO DEL PROGRAMA
 if __name__ == "__main__":
-    intro()
-    main()
+    menu()
